@@ -4,7 +4,7 @@ import { useNavigate} from "react-router-dom";
 //import score component
 //import timer component
 //import settings component
-import question from "./question";
+import question from "./questionView";
 import score from "./score";
 import timer from "./timer";
 //import Settings from "./settings";
@@ -79,5 +79,5 @@ return ( //what is shown on the page? gamePlay page, questions, answer selection
 
 
 
-}
+
 export default gamePlay;
