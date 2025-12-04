@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 
 const Score = ({ score }) => {
-  const scoreRef = useRef(score);
+  const scoreRef = useRef(score);  //Do not need to set initial value because score is passed as prop and is the value
   //Does intialvalue need to be declared if starting at 0?
   
   // Update ref when score changes but keep rendering consistent
