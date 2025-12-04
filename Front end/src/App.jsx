@@ -1,9 +1,21 @@
+ import React from 'react';
+ import gamePlay from './components/gameplay/main';
+
+
+
+
 const app = () => {
 
 
   return(
-  <h1>Welcome to the Trivia App!</h1>
-  )
+
+// Need setup but cant be done without router logic first
+  
+
+
+
+
+)
 }
 
 
