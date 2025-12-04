@@ -1,5 +1,7 @@
 //https://www.w3schools.com/react/react_usereducer.asp
 //https://react.dev/reference/react/useReducer
+//https://blog.logrocket.com/react-usereducer-hook-ultimate-guide/
+
 
 // Intial states and a function that handles multiple state changes based on action types instead of multiple useState calls or handler functions.
 // This allows for multiple states to interact more easily with less code and complexity.
@@ -21,6 +23,7 @@ const intialGameState = { //this sets intial states for game compariable to useS
   isGameOver: false,
   currentQuestion: null,
   isCorrect: null, //will be boolean to check if answer is correct later
+  correctAnswers: 0, 
 };
 // revisit to make it so it fetches one question from API at a time instead of all at once? or maybe keep all at once for easier navigation back and forth? Will come back later because back end logic
 // will determine best way  
@@ -38,7 +41,7 @@ const gameReducer = (state, action) => {           //this function handles ALL s
                 //isGameOver not changing on load questions action
 
       };
-    case 'ANSWER_QUESTION': // so now when a question is answered this action type will run
+    case 'ANSWER_CLICK': // so now when a question is answered this action type will run
       const isCorrect = action.payload === state.currentQuestion.correct_answer; //setting up what isCorrect does which is comparing selected answer to the correct answer
       return {
         ...state,
@@ -47,6 +50,7 @@ const gameReducer = (state, action) => {           //this function handles ALL s
              //currentQuestion: unrelated
               // timeRemaining: No time remaining once answer is selected
         score: isCorrect ? state.score + 100 : state.score, //using isCorrect boolean to determine if score should be increased or not when correct increases score by 100 points
+        correctAnswers: isCorrect ? state.correctAnswers + 1 : state.correctAnswers, //for tracking number of correct answers to display on result page
              // ? above is checking if boolean is true like "Yo, is this true ?"          isGameOver: Unchanged, we will handle next question before game ends with button click
 
       };
@@ -59,13 +63,14 @@ const gameReducer = (state, action) => {           //this function handles ALL s
         currentQuestion: isGameOver ? null : state.questions[nextIndex],
         isGameOver,
         isCorrect: null,
+       
       };
-    case 'TICK_TIMER':
+    case 'TIMER':
       return {
         ...state,
-        timeRemaining: Math.max(0, state.timeRemaining - 1),
+        timeRemaining: 0
       };
-    case 'RESET_GAME':
+    case 'RESET':
       return intialGameState;
 
     }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate} from "react-router-dom";
+//import { useNavigate} from "react-router-dom";
 //import question component
 //import score component
 //import timer component
