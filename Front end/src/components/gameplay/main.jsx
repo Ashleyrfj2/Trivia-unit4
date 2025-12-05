@@ -1,46 +1,84 @@
 import { useState, useEffect } from "react";
-//import { useNavigate} from "react-router-dom";
-//import question component
-//import score component
-//import timer component
-//import settings component
-import question from "./questionView";
-import score from "./score";
-import timer from "./timer";
-//import Settings from "./settings";
+import { useParams } from "react-router-dom";
+import { useGameReducer } from "./useReducer";
+import QuestionView from "./questionView";
+import Score from "./score";
+ 
 
-
+//https://generalassembly.instructure.com/courses/927/pages/intro-to-asynchronous-programming-video?module_item_id=91638
 
 //need settings from settings component when available
-const gamePlay = (props ) => {
+const GamePlay = () => {
+  const { category, difficulty } = useParams();
+  const [state, dispatch] = useGameReducer();
 
+  useEffect(() => {
+    const loadQuestions = async () => {
+      try {
+        const response = await fetch(`/api/questions/${category}/${difficulty}`);
+        if (!response.ok) {
+          throw new Error(`API error: ${response.status}`);
+        }
+        const data = await response.json();
+        const twoQuestions = Array.isArray(data) ? data.slice(0, 2) : [];
 
+        console.log("Fetched questions:", twoQuestions);
+        if (twoQuestions.length > 0) {
+          console.log("First question structure:", twoQuestions[0]);
+        }
 
+        dispatch({
+          type: "questionLoad",
+          payload: {
+            questions: twoQuestions,
+          },
+        });
+      } catch (error) {
+        console.error("Failed to load questions:", error);
+        alert(`Error loading questions: ${error.message}`);
+      }
+    };
 
-useEffect(() => {
-//first question load ASAP
+    if (category && difficulty) {
+      loadQuestions();
+    }
+  }, [category, difficulty]);
 
-}, []);
+  // Timer effect
+  useEffect(() => {
+    const timer = setInterval(() => {
+      dispatch({ type: "timer" });
+    }, 1000);
 
+    return () => clearInterval(timer);
+  }, []);
 
-
-return ( // questions, answer selections, timer, current score, and ______ add more later if needed
-    
-    <div className="gameplay-container">
-    
-        {/* Render question, answers, score, timer */}
-    
-
-
+  return (
+    <div className="questionview">
+      <QuestionView
+        currentQuestion={state.currentQuestionIndex + 1}
+        totalQuestions={state.questions.length}
+      />
+      <Score score={state.score} />
+      <p className="timer">Time: {state.timeRemaining}s</p>
+      <h1>{state.currentQuestion?.question}</h1>
+      {state.currentQuestion?.answers && state.currentQuestion.answers.length > 0 ? (
+        state.currentQuestion.answers.map((answer, index) => {
+          const answerText = typeof answer === 'string' ? answer : answer.text;
+          return (
+            <button
+              key={index}
+              onClick={() => dispatch({ type: "answer", payload: answer })}
+            >
+              {answerText ? answerText.toLowerCase() : "Answer"}
+            </button>
+          );
+        })
+      ) : (
+        <p>Loading questions...</p>
+      )}
     </div>
-);
-   
-
-
-
-
-
+  );
 }
 
-
-export default gamePlay;
+export default GamePlay;

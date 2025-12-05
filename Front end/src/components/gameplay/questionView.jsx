@@ -13,13 +13,11 @@
 
 import React from 'react';
 
-const QuestionView = ({ question, currentQuestion, totalQuestions }) => {
+const QuestionView = ({ currentQuestion, totalQuestions }) => {
 
-// Placeholder for question view component
   return (
     <div className="question-container">
-      {/* <h2 className="question-text"> {QUESTION FROM API}</h2> */} {/* Placeholder for question text */}
-     
+      <p>Question {currentQuestion} / {totalQuestions}</p>
     </div>
   );
 };

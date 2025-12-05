@@ -47,3 +47,6 @@
 }
 
 .submit { grid-area: submit; }
+button {
+  width: 20px;
+}
