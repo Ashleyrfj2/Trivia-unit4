@@ -1,22 +1,26 @@
- import React from 'react';
- import gamePlay from './components/gameplay/main';
+import { useState } from 'react';
+import Modal from './components/modal.jsx'; 
 
-
-
-
-const app = () => {
-
-
-  return(
-
-// Need setup but cant be done without router logic first
+const App = () => {
   
+  const [loginModal, setLoginModal] = useState(true);
 
+  const [username, setUsername] = useState('');
 
+  return (
+    <div>
+      
+      {loginModal && (
+        <Modal 
+          userNameLogIn={setUsername} 
+          setLoginModal={setLoginModal} 
+        />
+      )}
 
+        {username && <h2>Welcome, {username}!</h2>}
+    </div>
+    
+  );
+};
 
-)
-}
-
-
-export default app;
+export default App;
