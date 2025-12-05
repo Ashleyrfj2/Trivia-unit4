@@ -11,7 +11,7 @@ const Score = ({ score }) => {
   // re-rendering component on score change. So score will stay consistent on screen without re-rendering and update when score prop changes.
 
   return (
-    <div className="score-display">
+    <div className="score">
       <h3>Score: {scoreRef.current}</h3>
     </div>
   );
