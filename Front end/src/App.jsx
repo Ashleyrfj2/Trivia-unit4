@@ -9,29 +9,34 @@ const App = () => {
   const [loginModal, setLoginModal] = useState(true);
   const [username, setUsername] = useState('');
 
-  return (
-    <div>
-      
-      {loginModal && (
-        <Modal 
-          userNameLogIn={setUsername} 
-          setLoginModal={setLoginModal} 
-        />
-      )}
+//   return ( 
+//   <>
+//     <div>
+     
+//       {loginModal && (
+//         <Modal 
+//           userNameLogIn={setUsername} 
+//           setLoginModal={setLoginModal} 
+//         />
+//       )}
 
-        {username && <h2>Welcome, {username}!</h2>}
-    </div>
+//         {username && <h2>Welcome, {username}!</h2>}
+//     </div>
     
-
-
+// </>
+//     )
 
 
   return (
+    <>
     <Routes>
-      <Route path="/" element={<Settings/>}/>
+      <Route path="/" element = {<Settings/>}/>
+      <Route path="/login" element={<Modal/>}/>
       <Route path="/play" element={<GamePlay />} />
       <Route path="/play/:category/:difficulty" element={<GamePlay />} />
+     
     </Routes>
+    </>
   );
 };
 
