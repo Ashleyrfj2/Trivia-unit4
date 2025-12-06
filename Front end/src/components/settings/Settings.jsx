@@ -18,10 +18,10 @@ return (
       <h1>Trivia Game Settings</h1>
     </header>
 
-    <div className="settings-card">
-      <div className="settings-field">
+    <div className="settings-card select-success">
+      <div className="settings-field" id="button">
         <label htmlFor="category">Category</label>
-        <select required name="category" id="category" value={category} onChange={(event) => setCategory(event.target.value)}>
+        <select defaultValue="Color scheme" className="select select-accent" id="category" value={category} onChange={(event) => setCategory(event.target.value)}>
           <option value="">Select Category</option>
           <option value="science">Science</option>
           <option value="history">History</option>
@@ -33,21 +33,21 @@ return (
 
       <div className="settings-field">
         <label htmlFor="difficulty">Difficulty</label>
-        <select required name="difficulty" id="difficulty" value={difficulty} onChange={(event) => setDifficulty(event.target.value)}>
+        <select required className="select select-secondary" id="difficulty" value={difficulty} onChange={(event) => setDifficulty(event.target.value)}>
           <option value="">Select Difficulty</option>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
         </select>
       </div>
-    </div>
+    
 
-    <footer className="settings-footer">
+    <div>
       {/* <button className="play-button" onClick={navigate(`/play/${category}/${difficulty}`)} >Play</button> */}
       {/* this was my original line of code and everytime I set a setting it would. render navigate with only the one setting field as the url param */}
       {/* and now im confused why it was doing that instead of just.. not working? */}
       <button className="play-button" onClick={() => navigate(`/play/${category}/${difficulty}`)} >Play</button>
-    </footer>
+    </div></div>
   </div>
 )
 

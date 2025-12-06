@@ -10,6 +10,7 @@
 // useState = simple mangagement such as theme toggle, open close modal, etc
 // useReducer = complex management with multiple interacting states such as game play, question and answer logic, score, timer, etc
 import { useReducer as useReducerHook } from "react";
+import { Link } from "react-router";
 
 const initialGameState = {
   questions: [],
@@ -42,6 +43,7 @@ const gameReducer = (state, action) => {
       const isCorrect = action.payload === state.currentQuestion.correct_answer;  
       const nextIndex = state.currentQuestionIndex + 1;
       const isGameOver = nextIndex >= state.questions.length;
+
       return {
         ...state,
         selectedAnswer: action.payload,
@@ -50,9 +52,10 @@ const gameReducer = (state, action) => {
         score: isCorrect ? state.score + 100 : state.score,
         correctAnswer: isCorrect ? state.correctAnswer + 1 : state.correctAnswer,
    currentQuestionIndex: nextIndex,
-        currentQuestion: isGameOver ? null : state.questions[nextIndex],
+        timeRemaining: action.payload.timer || 30 ,
+        currentQuestion: isGameOver ? null: state.questions[nextIndex],
         isGameOver: isGameOver,
-         timeRemaining: action.payload.timer || 30
+        
         // correctTotal: isCorrect ? state.correctTotal + 1 : state.correctTotal,
 
         

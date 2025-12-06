@@ -34,6 +34,7 @@ const App = () => {
       <Route path="/login" element={<Modal/>}/>
       <Route path="/play" element={<GamePlay />} />
       <Route path="/play/:category/:difficulty" element={<GamePlay />} />
+      <Route path="/play/placeholder" element={<endGamePlaceHolder/>}/>
      
     </Routes>
     </>

@@ -56,13 +56,21 @@ loadQuestions();
 
   return (
     <div className="questionview">
+<div className="mockup-browser border-base-300 border w-full">
+  <div className="mockup-browser-toolbar">
+    <div className="input">  
       <QuestionView
         currentQuestion={state.currentQuestionIndex + 1}
         totalQuestions={state.questions.length}
+        
 
-      />
-   t
-      <Score score={state.score} />
+      />  <Score score={state.score} />   </div>
+  </div>
+  <div className="grid place-content-center border-t border-base-300 h-80">
+
+    
+
+      
 
 
 
@@ -70,13 +78,14 @@ loadQuestions();
 
       <p className="timer">Time: {state.timeRemaining}s </p>
         
-     
+     <div className="content-center">
       <h1>{state.currentQuestion.question}</h1>
       {state.currentQuestion?.correct_answer && state.currentQuestion.correct_answer.length > 0 ? (
         state.currentQuestion.answers.map((answer, index) => {
           const answerText = typeof answer === 'string' ? answer : answer.text;
+          
           return (
-            <button
+            <button className="btn btn-outline content-center" id="answerBtn"
               key={index}
               onClick={() => dispatch({ type: "answer", payload: answer })}
             >
@@ -87,7 +96,8 @@ loadQuestions();
       ) : (
         <p>Loading questions...</p>
       )}
-    </div>
+    </div></div>
+</div></div>
   );
 }
 
