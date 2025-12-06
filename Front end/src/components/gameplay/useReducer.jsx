@@ -29,23 +29,24 @@ const gameReducer = (state, action) => {
     case 'questionLoad':
       return {
         ...state,
-        questions: action.payload.questions,
-        currentQuestion: action.payload.questions[0] || null,
-        currentQuestionIndex: 0,
-        timeRemaining: action.payload.timeLimit || 30,
-        selectedQuestion: null,
-        selectedAnswer: null,
-        isCorrect: null,
+        questions: action.payload.questions, //set incoming array to questions aka setQuestions
+        currentQuestion: action.payload.questions[0], //set first question, [0] is index
+        currentTotalCompleted: 0, //for ?/10 questions.   counter
+        //timeRemaining: action.payload.timeLimit || 30,
+        selectedQuestion: null, //reset
+        selectedAnswer: null,//reset
+        isCorrect: null,//reset
       };
     case 'answer':
       const isCorrect = action.payload === state.currentQuestion.correct_answer;
       return {
         ...state,
         selectedAnswer: action.payload,
-        isCorrect: isCorrect,
+        isCorrect: isCorrect, // kept trying to figure out why the correct answer was always the first option and thought my code was wrong and just was giving the score
+        //for the first button because it was hard coded to do that, but its actually just bc its the right answer due to the api model lol
         score: isCorrect ? state.score + 100 : state.score,
         correctAnswers: isCorrect ? state.correctAnswers + 1 : state.correctAnswers,
-        timeRemaining: 30,
+       // timeRemaining: 0,
       };
     case 'nextQ':
       const nextIndex = state.currentQuestionIndex + 1;
