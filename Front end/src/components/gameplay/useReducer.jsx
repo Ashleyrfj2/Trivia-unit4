@@ -18,7 +18,7 @@ const initialGameState = {
   timeRemaining: 0,
   isGameOver: false,
   isCorrect: null,
-  correctAnswers: 0,
+correctAnswers: 0,
   currentQuestionIndex: 0,
   selectedAnswer: null,
   selectedQuestion: null,
@@ -32,34 +32,42 @@ const gameReducer = (state, action) => {
         questions: action.payload.questions, //set incoming array to questions aka setQuestions
         currentQuestion: action.payload.questions[0], //set first question, [0] is index
         currentTotalCompleted: 0, //for ?/10 questions.   counter
-        //timeRemaining: action.payload.timeLimit || 30,
+        timeRemaining: action.payload.timer || 30,
         selectedQuestion: null, //reset
         selectedAnswer: null,//reset
         isCorrect: null,//reset
+       
       };
     case 'answer':
-      const isCorrect = action.payload === state.currentQuestion.correct_answer;
+      const isCorrect = action.payload === state.currentQuestion.correct_answer;  
+      const nextIndex = state.currentQuestionIndex + 1;
+      const isGameOver = nextIndex >= state.questions.length;
       return {
         ...state,
         selectedAnswer: action.payload,
         isCorrect: isCorrect, // kept trying to figure out why the correct answer was always the first option and thought my code was wrong and just was giving the score
         //for the first button because it was hard coded to do that, but its actually just bc its the right answer due to the api model lol
         score: isCorrect ? state.score + 100 : state.score,
-        correctAnswers: isCorrect ? state.correctAnswers + 1 : state.correctAnswers,
-       // timeRemaining: 0,
-      };
-    case 'nextQ':
-      const nextIndex = state.currentQuestionIndex + 1;
-      const isGameOver = nextIndex >= state.questions.length;
-      return {
-        ...state,
-        currentQuestionIndex: nextIndex,
+        correctAnswer: isCorrect ? state.correctAnswer + 1 : state.correctAnswer,
+   currentQuestionIndex: nextIndex,
         currentQuestion: isGameOver ? null : state.questions[nextIndex],
         isGameOver: isGameOver,
-        isCorrect: null,
-        selectedQuestion: null,
-        selectedAnswer: null,
-      };
+         timeRemaining: action.payload.timer || 30
+        // correctTotal: isCorrect ? state.correctTotal + 1 : state.correctTotal,
+
+        
+
+      }
+       // ,
+    //   };
+    // case 'nextQ':        //this took way to long to fix
+    
+      // return {
+        
+     
+        // isCorrect: null,
+       
+      
     case 'timer':
       return {
         ...state,

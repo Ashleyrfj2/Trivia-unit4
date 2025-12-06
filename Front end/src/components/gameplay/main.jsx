@@ -12,47 +12,46 @@ const GamePlay = () => {
   const { category, difficulty } = useParams();
   const [state, dispatch] = useGameReducer();
 
-  useEffect(() => {
+      
+useEffect(() => {
+  
     const loadQuestions = async () => {
-      try {
+     
         const response = await fetch(`/api/questions/${category}/${difficulty}`);
-        if (!response.ok) {
-          throw new Error(`API error: ${response.status}`);
-        }
-        const data = await response.json();
-        const totalQuestions = Array.isArray(data) ? data.slice(0, 2) : [];
+       const data = await response.json();
+         console.log("Fetched questions:", data);
 
-        console.log("Fetched questions:", totalQuestions);
-        if (totalQuestions.length > 0) {
-          console.log("First question structure:", totalQuestions[0]);
+        function randomQuestions(pulledData) {
+          return pulledData.sort(() => 0.5 - Math.random()).slice(0, 10);
         }
+
+      const questionsPass = randomQuestions(data);
 
         dispatch({
           type: "questionLoad",
           payload: {
-            questions: totalQuestions,
+            questions: questionsPass,
           },
-        });
-      } catch (error) {
-        console.error("Failed to load questions:", error);
-        alert(`Error loading questions: ${error.message}`);
-      }
-    };
 
-    if (category && difficulty) {
-      loadQuestions();
+        });
+
+    
+    }
+  
+  if (category && difficulty) {
+loadQuestions();
     }
   }, [category, difficulty]);
-
+    
   // Timer effect
   useEffect(() => {
             const timer = setInterval(() => {
             dispatch({ type: "timer" });
     },          
-    1000);
+    1000); //how often to run the function soin this case its every 1000mm that the timer state will run, can be used for anything
 
-    return () =>  
-      clearInterval(timer);
+    return () =>  //https://developer.mozilla.org/en-US/docs/Web/API/Window/clearInterval 
+      clearInterval(timer); 
   }, []);
 
   return (
@@ -60,17 +59,20 @@ const GamePlay = () => {
       <QuestionView
         currentQuestion={state.currentQuestionIndex + 1}
         totalQuestions={state.questions.length}
+
       />
-      
+   t
       <Score score={state.score} />
 
 
 
 
 
-      <p className="timer">Time: {state.timeRemaining}s</p>
-      <h1>{state.currentQuestion?.question}</h1>
-      {state.currentQuestion?.answers && state.currentQuestion.answers.length > 0 ? (
+      <p className="timer">Time: {state.timeRemaining}s </p>
+        
+     
+      <h1>{state.currentQuestion.question}</h1>
+      {state.currentQuestion?.correct_answer && state.currentQuestion.correct_answer.length > 0 ? (
         state.currentQuestion.answers.map((answer, index) => {
           const answerText = typeof answer === 'string' ? answer : answer.text;
           return (
@@ -78,7 +80,7 @@ const GamePlay = () => {
               key={index}
               onClick={() => dispatch({ type: "answer", payload: answer })}
             >
-              {answerText ? answerText.toLowerCase() : "Answer"}
+              {answerText ? answerText : "answer"}
             </button>
           );
         })

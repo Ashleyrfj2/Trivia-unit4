@@ -11,13 +11,7 @@ const navigate = useNavigate();
 const [category, setCategory] = useState("")
 const [difficulty, setDifficulty] = useState("")
 
-const settingsStart = () => {
-    if (!category || !difficulty) {
-    
-      return;
-    }
-    navigate(`/play/${category}/${difficulty}`)
-}
+
 return (
   <div className="settings-container">
     <header className="settings-header">
@@ -49,9 +43,13 @@ return (
     </div>
 
     <footer className="settings-footer">
-      <button className="play-button" onClick={settingsStart} >Play</button>
+      {/* <button className="play-button" onClick={navigate(`/play/${category}/${difficulty}`)} >Play</button> */}
+      {/* this was my original line of code and everytime I set a setting it would. render navigate with only the one setting field as the url param */}
+      {/* and now im confused why it was doing that instead of just.. not working? */}
+      <button className="play-button" onClick={() => navigate(`/play/${category}/${difficulty}`)} >Play</button>
     </footer>
   </div>
 )
+
 }
 export default Settings
