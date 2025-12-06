@@ -20,17 +20,17 @@ const GamePlay = () => {
           throw new Error(`API error: ${response.status}`);
         }
         const data = await response.json();
-        const twoQuestions = Array.isArray(data) ? data.slice(0, 2) : [];
+        const totalQuestions = Array.isArray(data) ? data.slice(0, 2) : [];
 
-        console.log("Fetched questions:", twoQuestions);
-        if (twoQuestions.length > 0) {
-          console.log("First question structure:", twoQuestions[0]);
+        console.log("Fetched questions:", totalQuestions);
+        if (totalQuestions.length > 0) {
+          console.log("First question structure:", totalQuestions[0]);
         }
 
         dispatch({
           type: "questionLoad",
           payload: {
-            questions: twoQuestions,
+            questions: totalQuestions,
           },
         });
       } catch (error) {
@@ -46,11 +46,13 @@ const GamePlay = () => {
 
   // Timer effect
   useEffect(() => {
-    const timer = setInterval(() => {
-      dispatch({ type: "timer" });
-    }, 1000);
+            const timer = setInterval(() => {
+            dispatch({ type: "timer" });
+    },          
+    1000);
 
-    return () => clearInterval(timer);
+    return () =>  
+      clearInterval(timer);
   }, []);
 
   return (
@@ -59,7 +61,13 @@ const GamePlay = () => {
         currentQuestion={state.currentQuestionIndex + 1}
         totalQuestions={state.questions.length}
       />
+      
       <Score score={state.score} />
+
+
+
+
+
       <p className="timer">Time: {state.timeRemaining}s</p>
       <h1>{state.currentQuestion?.question}</h1>
       {state.currentQuestion?.answers && state.currentQuestion.answers.length > 0 ? (

@@ -13,7 +13,7 @@ const [difficulty, setDifficulty] = useState("")
 
 const settingsStart = () => {
     if (!category || !difficulty) {
-      alert("Please select both a category and difficulty level");
+    
       return;
     }
     navigate(`/play/${category}/${difficulty}`)
@@ -49,7 +49,7 @@ return (
     </div>
 
     <footer className="settings-footer">
-      <button className="play-button" onClick={settingsStart} disabled={!category || !difficulty}>Play</button>
+      <button className="play-button" onClick={settingsStart} >Play</button>
     </footer>
   </div>
 )
