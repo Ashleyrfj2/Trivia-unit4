@@ -33,14 +33,14 @@ const App = () => {
       <Navbar userName={userName} />
       <Routes>
         <Route path="/" element = {<Settings userName={userName}/>}/>
-        <Route path="/login" element={<Modal userNameLogIn={handleUsernameSubmit}/>}/>
+        <Route path="/login" element={<Modal userNameLogIn={handleUsernameSubmit} setLoginModal={setShowModal}/>}/>
         <Route path="/play" element={<GamePlay userName={userName}/>} />
         <Route path="/play/:category/:difficulty" element={<GamePlay userName={userName}/>} />
         <Route path="/play/placeholder" element={<EndGame userName={userName}/>}/>
       </Routes>
       {showModal && (
         <div className="modal-overlay">
-          <Modal userNameLogIn={handleUsernameSubmit} />
+          <Modal userNameLogIn={handleUsernameSubmit} setLoginModal={setShowModal} />
         </div>
       )}
     </>

@@ -28,8 +28,8 @@ return (
 
  
 
-	<div className="mockup-window border border-base-300 w-full" id="modalview">
-	 <div className="grid place-content-center border-t border-base-300 h-80">Hello!
+	<div className="mockup-window border w-full" id="modalview">
+	 <div className="grid place-content-center border-t border-base-30 h-80">Hello!
 	 <p>Welcome Back!</p>
       <input name="userName" onChange={handleInputChange} placeholder="Username" />
       {/* <input name="password" type="password" onChange={handleInputChange} placeholder="Password" /> */}
