@@ -6,7 +6,7 @@ Ashley's notes:
  I used the official documents and other examples from w3 schools and MDN to set up a basic what I thought was correct based off that as a starting point:
 
 <details>
-<summary>🎮 useReducer Game State Management</summary>
+<summary>Original code</summary>
 
 ```javascript
 const intialGameState = { //this sets intial states for game compariable to useState initial values
