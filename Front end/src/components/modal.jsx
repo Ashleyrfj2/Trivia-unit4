@@ -1,9 +1,18 @@
+// import Modal from './components/modal.jsx';
+// const [loginModal, setLoginModal] = useState(true);
+// const [username, setUsername] = useState('');
+// {loginModal && (
+//   <Modal 
+//     userNameLogIn={setUsername}
+//     setLoginModal={setLoginModal}
+//   />
+// )}
+// {username} * this can be used anywhere
 
-//const [loginModal, setLoginModal] = useState(true);
 
-import {useState } from 'react';
+import {useState } from 'react'; //import the useState to be able to use states in this components
 
-const Modal = ({ userNameLogIn, setLoginModal }) => {
+const Modal = ({ userNameLogIn, setLoginModal }) => { //
 
 const [logIn, setLogIn] = useState ({
 	userName: '',
