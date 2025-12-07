@@ -2,22 +2,28 @@ import { useNavigate } from "react-router-dom"
 import { ChevronDown } from 'lucide-react';
 import {useState} from "react"
 import Highscore from "./highscore";
+import "./settings.css";
+
+
 //https://generalassembly.instructure.com/courses/927/pages/react-router-dom?module_item_id=91677
 //https://generalassembly.instructure.com/courses/927/pages/dom-events-video?module_item_id=91602
 //https://generalassembly.instructure.com/courses/927/pages/controlled-forms-in-react-video?module_item_id=91673
 
 
-const Settings = () => {
-  
+
+  const Settings = ({ userName }) => {
+
 const navigate = useNavigate();
 const [category, setCategory] = useState("")
 const [difficulty, setDifficulty] = useState("")
 
 
 return (
+  
   <div className="settings-container">
+
     <header className="settings-header">
-     
+
     </header>
 
     <div className="settings-card select-success text-center">
@@ -25,7 +31,7 @@ return (
         
   
         <select  className="select select-accent " id="category" value={category} onChange={(event) => setCategory(event.target.value)}>
-          <option disabled value="">Select Category <svg ></svg></option>
+          <option disabled value="">Select Category </option>
           <option value="science">Science</option>
           <option value="history">History</option>
           <option value="animals">Entertainment</option>
@@ -45,12 +51,12 @@ return (
       </div>
       <div> 
 {/* highscore or extra content area */}
-      <Highscore/>
+     
 
       </div>
-    
-
-    <div>
+ <div>
+  <Highscore/>  
+   </div> <div>
       {/* <button className="play-button" onClick={navigate(`/play/${category}/${difficulty}`)} >Play</button> */}
       {/* this was my original line of code and everytime I set a setting it would. render navigate with only the one setting field as the url param */}
       {/* and now im confused why it was doing that instead of just.. not working? */}

@@ -6,18 +6,8 @@
 const Highscore = () => {   
 
 
-
-
-
-
-
-
-
-
-
-
 return (
-    <div className="highscore-container">
+    <div className="highscore-container content-center">
         <h2>High Scores</h2>
     </div>
         )

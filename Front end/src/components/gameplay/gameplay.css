@@ -2,59 +2,58 @@
 
 
 
+div#browser{
+  width: 900px;
+  height: 80vh;
+  margin-bottom: 20px;
 
-
-
-
-.container {  display: grid;
-  grid-template-columns: 0.9fr 1.1fr 1fr;
-  grid-template-rows: 0.4fr 2.3fr 0.3fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "Top Top Top"
-    "QA QA QA"
-    "submit submit submit";
 }
 
-.Top {  display: grid;
-  grid-template-columns: 0.2fr 2.3fr 1.5fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    ". . ."
-    ". . ."
-    ". . .";
-  grid-area: Top;
+.timer {
+  padding: 16px;
+  text-align: center;
+  font-size: 18px;
 }
 
-.QA {  display: grid;
-  grid-template-columns: 0.4fr 2.4fr 0.2fr;
-  grid-template-rows: 2.2fr 0.1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "Question Question Question"
-    "answers answers answers"
-    "answers answers answers";
-  grid-area: QA;
+div#view{
+  display: grid;
+  grid-template-rows: 1fr .25fr;
+  padding: 20px;
+  gap: 30px;
 }
 
-.Question { grid-area: Question; }
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.answers {  display: grid;
+.question h1 {
+  text-align: center;
+  font-size: 24px;
+}
+
+.answers {
+  display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    ". ."
-    ". .";
-  grid-area: answers;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  justify-content: center;
+  border-radius: 25px;
 }
 
-.submit { grid-area: submit; }
-button {
-  width: 20px;
+.btn {
+  padding: 12px 20px;
+  font-size: 16px;
 }
+
+
+
+
+
+
+
+

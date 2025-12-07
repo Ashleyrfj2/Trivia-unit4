@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useGameReducer } from "../../hook/useReducer";
 import QuestionView from "./questionView";
 import Score from "./score";
- 
+import './gameplay.css';
 
 //https://generalassembly.instructure.com/courses/927/pages/intro-to-asynchronous-programming-video?module_item_id=91638
 
 //need settings from settings component when available
-const GamePlay = () => {
+const GamePlay = ({ userName }) => {
   const { category, difficulty } = useParams();
+  const navigate = useNavigate();
   const [state, dispatch] = useGameReducer();
+ 
 
       
 useEffect(() => {
@@ -27,6 +29,7 @@ useEffect(() => {
 
       const questionsPass = randomQuestions(data);
 
+      
         dispatch({
           type: "questionLoad",
           payload: {
@@ -47,12 +50,19 @@ loadQuestions();
   useEffect(() => {
             const timer = setInterval(() => {
             dispatch({ type: "timer" });
-    },          
+    },
     1000); //how often to run the function soin this case its every 1000mm that the timer state will run, can be used for anything
 
-    return () =>  //https://developer.mozilla.org/en-US/docs/Web/API/Window/clearInterval 
-      clearInterval(timer); 
+    return () =>  //https://developer.mozilla.org/en-US/docs/Web/API/Window/clearInterval
+      clearInterval(timer);
   }, []);
+
+  // Navigate to end game when game is over
+  useEffect(() => {
+    if (state.isGameOver) {
+      navigate("/play/placeholder");
+    }
+  }, [state.isGameOver, navigate]);
 
   return (
     <div className="questionview">
@@ -66,7 +76,7 @@ loadQuestions();
 
       />  <Score score={state.score} />   </div>
   </div>
-  <div className="grid place-content-center border-t border-base-300 h-80">
+  <div className="grid place-content-center border-t border-base-300 h-80 w-90" id="browser">
 
     
 
@@ -78,21 +88,30 @@ loadQuestions();
 
       <p className="timer">Time: {state.timeRemaining}s </p>
         
-     <div className="content-center">
-      <h1>{state.currentQuestion.question}</h1>
-      {state.currentQuestion?.correct_answer && state.currentQuestion.correct_answer.length > 0 ? (
-        state.currentQuestion.answers.map((answer, index) => {
-          const answerText = typeof answer === 'string' ? answer : answer.text;
-          
-          return (
-            <button className="btn btn-outline content-center" id="answerBtn"
-              key={index}
-              onClick={() => dispatch({ type: "answer", payload: answer })}
-            >
-              {answerText ? answerText : "answer"}
-            </button>
-          );
-        })
+     <div className="content-center"id='view'>
+      {state.currentQuestion && typeof state.currentQuestion === 'object' ? (
+        <>
+        <div className = 'question'>
+          <h1>{state.currentQuestion.question}</h1></div>
+          {state.currentQuestion?.correct_answer && state.currentQuestion.correct_answer.length > 0 ? (
+            <div className="answers">
+              {state.currentQuestion.answers.map((answer, index) => {
+                const answerText = typeof answer === 'string' ? answer : answer.text;
+
+                return (
+                  <button className="btn btn-outline content-center" id="answerBtn"
+                  key={index}
+                  onClick={() => dispatch({ type: "answer", payload: answer })}
+                >
+                  {answerText ? answerText : "answer"}
+                </button>
+                );
+              })}
+            </div>
+          ) : (
+            <p>Loading questions...</p>
+          )}
+        </>
       ) : (
         <p>Loading questions...</p>
       )}

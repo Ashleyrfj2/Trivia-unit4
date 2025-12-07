@@ -10,7 +10,6 @@
 // useState = simple mangagement such as theme toggle, open close modal, etc
 // useReducer = complex management with multiple interacting states such as game play, question and answer logic, score, timer, etc
 import { useReducer as useReducerHook } from "react";
-import { Link } from "react-router";
 
 const initialGameState = {
   questions: [],
@@ -19,10 +18,12 @@ const initialGameState = {
   timeRemaining: 0,
   isGameOver: false,
   isCorrect: null,
-correctAnswers: 0,
+  correctAnswers: 0,
   currentQuestionIndex: 0,
   selectedAnswer: null,
   selectedQuestion: null,
+
+  // updatedScores: [],
 };
 
 const gameReducer = (state, action) => {
@@ -37,13 +38,12 @@ const gameReducer = (state, action) => {
         selectedQuestion: null, //reset
         selectedAnswer: null,//reset
         isCorrect: null,//reset
-       
       };
     case 'answer':
-      const isCorrect = action.payload === state.currentQuestion.correct_answer;  
+      const isCorrect = action.payload === state.currentQuestion.correct_answer;
       const nextIndex = state.currentQuestionIndex + 1;
       const isGameOver = nextIndex >= state.questions.length;
-
+      // const saveScore =localStorage.setItem('score', JSON.stringify(saveScore))
       return {
         ...state,
         selectedAnswer: action.payload,
@@ -51,25 +51,12 @@ const gameReducer = (state, action) => {
         //for the first button because it was hard coded to do that, but its actually just bc its the right answer due to the api data stored lol
         score: isCorrect ? state.score + 100 : state.score,
         correctAnswer: isCorrect ? state.correctAnswer + 1 : state.correctAnswer,
-   currentQuestionIndex: nextIndex,
+        currentQuestionIndex: nextIndex,
         timeRemaining: action.payload.timer || 30 ,
-        currentQuestion: isGameOver ? null: state.questions[nextIndex],
+        currentQuestion: isGameOver ? null : state.questions[nextIndex],
         isGameOver: isGameOver,
-        
-        // correctTotal: isCorrect ? state.correctTotal + 1 : state.correctTotal,
-
-        
-
       }
-       // ,
-    //   };
-    // case 'nextQ':        //this took way to long to fix
-    
-      // return {
-        
-     
-        // isCorrect: null,
-       
+   
       
     case 'timer':
       return {
