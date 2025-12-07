@@ -1,4 +1,10 @@
-Ashley's notes:
+https://www.markdownguide.org
+https://media.datacamp.com/legacy/image/upload/v1697797990/Marketing/Blog/Markdown_Cheat_Sheet.pdf
+
+**Ashley's notes:**
+
+    ### useReducer / logic 
+
     I couldnt bring all the features together using the useState(), I know its possible but I was having issues making it click in my head with the parts all depending on each other such as timer, score, so I went into the offical documents (react) to get my logic together and found out about useReducer which clicked really fast and made more sense to me. I learned that useState is meant for simple states that are independent and its best practice to use useReducer when its a bit more complex and states depend on each other. I also learned about useRef as they were all groups together.
  ![Image](./image.png) 
  https://react.dev/reference/react/useState
@@ -64,5 +70,70 @@ const gameReducer = (state, action) => {           //this function handles ALL s
     }
   };
 ```
+
+</details>
+
+Because I was using different sources and examples it was mostly not correct logic so the end product ended up looking way different as I started understanding the logic I was needing and not using outside documents because I had my own understanding. All the comments were for me to understand and others on my team, i wrote them, not AI - thanks.
+
+**Biggest problem*** I had with useReducer was figuring out the structure for each case, above,  I originally had "Load questions" and "next question" and extra cases that I didnt need. I was able to combine cases into one and it shortened the code a lot.
+
+
+---
+<details>
+<summary> I asked Claude for proper file structure, just noting here and may come back and implement if it makes sense and theres time<summary>
+
+Trivia-unit4/                          (root)
+│
+├── Front end/                         (React frontend)
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── gameplay/
+│   │   │   │   ├── Gameplay.jsx       (main container)
+│   │   │   │   ├── QuestionView.jsx   (display question)
+│   │   │   │   ├── AnswerView.jsx     (display answers)
+│   │   │   │   ├── Score.jsx
+│   │   │   │   ├── Timer.jsx
+│   │   │   │   └── gameplay.css
+│   │   │   ├── settings/
+│   │   │   │   ├── Settings.jsx
+│   │   │   │   ├── EndGame.jsx
+│   │   │   │   └── Highscore.jsx
+│   │   │   ├── common/                (shared components)
+│   │   │   │   ├── Modal.jsx
+│   │   │   │   └── Button.jsx         (if needed)
+│   │   │   └── App.jsx                (root component)
+│   │   ├── hooks/                     (custom React hooks)
+│   │   │   └── useGameplayReducer.js  (your state logic)
+│   │   ├── assets/
+│   │   ├── styles/
+│   │   │   ├── App.css
+│   │   │   ├── index.css
+│   │   │   └── variables.css          (colors, fonts, etc)
+│   │   ├── utils/                     (helper functions)
+│   │   │   └── api.js                 (API calls)
+│   │   ├── main.jsx                   (entry point)
+│   │   └── index.css
+│   ├── public/
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── eslint.config.js
+│   └── README.md
+│
+├── backend/                           (Node/Express backend)
+│   ├── src/
+│   ├── models/
+│   ├── routes/
+│   ├── controllers/
+│   └── package.json
+│
+└── .git/
+Key improvements:
+Move useReducer.jsx to a hooks/ folder → useGameplayReducer.js
+Create separate hooks/ directory for custom React hooks
+Create utils/ folder for helper functions and API calls
+Create styles/ folder for all CSS files
+Rename files to PascalCase (standard React convention): questionView.jsx → QuestionView.jsx
+Move modal.jsx to a common/ components folder
+Create proper backend/ folder structure for your backend code
 
 </details>
