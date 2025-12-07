@@ -10,9 +10,6 @@
 
 
 
-
-import React from 'react';
-
 const QuestionView = ({ currentQuestion, totalQuestions}) => {
 
   return (

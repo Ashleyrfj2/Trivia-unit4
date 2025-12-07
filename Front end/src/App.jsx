@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import Modal from './components/modal.jsx';
-import GamePlay from './components/gameplay/main';
+import Modal from './components/shared/modal.jsx';
+import GamePlay from './pages/GameplayPage/main';
 import { Route, Routes } from 'react-router-dom';
-import Settings from './components/settings/settings';
+import Settings from './pages/SettingsPage/Settings.jsx';
 import "./App/App.css"
-import EndGame from './components/EndGame.jsx';
-import Navbar from './components/navbar.jsx';
+import EndGame from './pages/EndGamePage/EndGame.jsx';
+import Navbar from './components/shared/navbar.jsx';
 const App = () => {
   const [showModal, setShowModal] = useState(true);
   const [userName, setUserName] = useState(() => {

@@ -1,7 +1,7 @@
 
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useGameReducer } from "../hook/useReducer";
+import { useGameReducer } from "../../hooks/useReducer";
 
 const EndGame = () => {
   const [gameState] = useGameReducer();
