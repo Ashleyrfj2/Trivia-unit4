@@ -11,18 +11,12 @@ Ashley's notes:
 //https://www.w3schools.com/react/react_usereducer.asp
 //https://react.dev/reference/react/useReducer
 
-// Intial states and a function that handles multiple state changes based on action types instead of multiple useState calls or handler functions.
-// This allows for multiple states to interact more easily with less code and complexity.
-// This is used on main.jsx gameplay in the return component, for example:
-// API function to fetch questions then add dispatch({ type: '<Action string here, such as LOAD_QUESTIONS'> and then, payload: <data that needs to be passed for state change here> })
-//full example: dispatch({ type: 'LOAD_QUESTIONS', payload: fetchedQuestionsFromAPI }) goes in the API fetch function after API call and what not
-// useState = simple mangagement such as theme toggle, open close modal, etc
-// useReducer = complex management with multiple interacting states such as game play, question and answer logic, score, timer, etc
+
 
 import { useReducer } from 'react';
 
 
-// TODO: I need to revisit this because I think I duplicated or missed some especially stuff from settings component but heres some basics
+
 const intialGameState = { //this sets intial states for game compariable to useState initial values
   questions: [],
   currentQuestion: 0,
