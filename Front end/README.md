@@ -7,16 +7,8 @@ Ashley's notes:
 
 <details>
 <summary>🎮 useReducer Game State Management</summary>
+
 ```javascript
-//https://www.w3schools.com/react/react_usereducer.asp
-//https://react.dev/reference/react/useReducer
-
-
-
-import { useReducer } from 'react';
-
-
-
 const intialGameState = { //this sets intial states for game compariable to useState initial values
   questions: [],
   currentQuestion: 0,
@@ -40,7 +32,6 @@ const gameReducer = (state, action) => {           //this function handles ALL s
         selectedQuestion: null,                                      //reset so no question is selected
         isCorrect: null,                                                     //reset so no answer is marked correct or incorrect yet
                 //isGameOver not changing on load questions action
-
       };
     case 'ANSWER_QUESTION': // so now when a question is answered this action type will run
       const isCorrect = action.payload === state.currentQuestion.correct_answer; //setting up what isCorrect does which is comparing selected answer to the correct answer
@@ -52,7 +43,6 @@ const gameReducer = (state, action) => {           //this function handles ALL s
               // timeRemaining: No time remaining once answer is selected
         score: isCorrect ? state.score + 100 : state.score, //using isCorrect boolean to determine if score should be increased or not when correct increases score by 100 points
              // ? above is checking if boolean is true like "Yo, is this true ?"          isGameOver: Unchanged, we will handle next question before game ends with button click
-
       };
     case 'NEXT_QUESTION':
       const nextIndex = state.currentQuestionIndex + 1; //incrementing question so that it counts up by 1 each 
@@ -71,7 +61,6 @@ const gameReducer = (state, action) => {           //this function handles ALL s
       };
     case 'RESET_GAME':
       return intialGameState;
-
     }
   };
 ```
