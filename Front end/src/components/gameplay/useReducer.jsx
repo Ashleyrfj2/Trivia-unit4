@@ -48,7 +48,7 @@ const gameReducer = (state, action) => {
         ...state,
         selectedAnswer: action.payload,
         isCorrect: isCorrect, // kept trying to figure out why the correct answer was always the first option and thought my code was wrong and just was giving the score
-        //for the first button because it was hard coded to do that, but its actually just bc its the right answer due to the api model lol
+        //for the first button because it was hard coded to do that, but its actually just bc its the right answer due to the api data stored lol
         score: isCorrect ? state.score + 100 : state.score,
         correctAnswer: isCorrect ? state.correctAnswer + 1 : state.correctAnswer,
    currentQuestionIndex: nextIndex,
