@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useGameReducer } from "./useReducer";
+import { useGameReducer } from "../../hook/useReducer";
 import QuestionView from "./questionView";
 import Score from "./score";
  

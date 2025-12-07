@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom"
+import { ChevronDown } from 'lucide-react';
 import {useState} from "react"
+import Highscore from "./highscore";
 //https://generalassembly.instructure.com/courses/927/pages/react-router-dom?module_item_id=91677
 //https://generalassembly.instructure.com/courses/927/pages/dom-events-video?module_item_id=91602
 //https://generalassembly.instructure.com/courses/927/pages/controlled-forms-in-react-video?module_item_id=91673
@@ -15,14 +17,15 @@ const [difficulty, setDifficulty] = useState("")
 return (
   <div className="settings-container">
     <header className="settings-header">
-      <h1>Trivia Game Settings</h1>
+     
     </header>
 
-    <div className="settings-card select-success">
+    <div className="settings-card select-success text-center">
       <div className="settings-field" id="button">
-        <label htmlFor="category">Category</label>
-        <select defaultValue="Color scheme" className="select select-accent" id="category" value={category} onChange={(event) => setCategory(event.target.value)}>
-          <option value="">Select Category</option>
+        
+  
+        <select  className="select select-accent " id="category" value={category} onChange={(event) => setCategory(event.target.value)}>
+          <option disabled value="">Select Category <svg ></svg></option>
           <option value="science">Science</option>
           <option value="history">History</option>
           <option value="animals">Entertainment</option>
@@ -31,14 +34,19 @@ return (
         </select>
       </div>
 
-      <div className="settings-field">
-        <label htmlFor="difficulty">Difficulty</label>
-        <select required className="select select-secondary" id="difficulty" value={difficulty} onChange={(event) => setDifficulty(event.target.value)}>
-          <option value="">Select Difficulty</option>
+      <div className="settings-field" id="button">
+        
+        <select required className="select select-secondary "  id="difficulty" value={difficulty} onChange={(event) => setDifficulty(event.target.value)}>
+          <option disabled value="">Select Difficulty  </option>
           <option value="easy">Easy</option>
           <option value="medium">Medium</option>
           <option value="hard">Hard</option>
         </select>
+      </div>
+      <div> 
+{/* highscore or extra content area */}
+      <Highscore/>
+
       </div>
     
 

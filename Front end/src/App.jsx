@@ -3,7 +3,7 @@ import Modal from './components/modal.jsx';
 import GamePlay from './components/gameplay/main';
 import { Route, Routes } from 'react-router-dom';
 import Settings from './components/settings/settings';
-
+import "./App/App.css"
 const App = () => {
   
   const [loginModal, setLoginModal] = useState(true);

@@ -15,6 +15,8 @@ const Score = ({ score }) => {
       <h3>Score: {scoreRef.current}</h3>
     </div>
   );
+  // Check if the browser supports local storage
+
 };
 
 export default Score;

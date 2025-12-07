@@ -81,7 +81,6 @@ Because I was using different sources and examples it was mostly not correct log
 ---
 <details>
 <summary> I asked Claude for proper file structure, just noting here and may come back and implement if it makes sense and theres time<summary>
-
 Trivia-unit4/                          (root)
 │
 ├── Front end/                         (React frontend)
