@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { ChevronDown } from 'lucide-react';
+
 import {useState} from "react"
 import Highscore from "./highscore";
 import "./settings.css";
