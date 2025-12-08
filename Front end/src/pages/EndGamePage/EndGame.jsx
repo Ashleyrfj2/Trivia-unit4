@@ -1,5 +1,8 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useGameReducer} from '../../hooks/useReducer';
+import './endGame.css';
 
 const Endgame = () => {
     const location = useLocation();
@@ -13,16 +16,16 @@ const Endgame = () => {
 
   useEffect(() => {
     if (gameState.isGameOver) {
-      navigate('/play/placeholder', { viewTransition: true });
+      navigate('/play/results', { viewTransition: true });
     }
   }, [gameState.isGameOver, navigate]);
-    const stats = location.state || {};
+    const state = location.state || {};
 
-    const score = stats.score || 0;
-    const highScore = stats.highScore || 0;
-    const difficulty = stats.difficulty || "Unknown";
-    const correctAnswer = stats.correctAnswer || 0;
-    const incorrectAnswer = stats.incorrectAnswer || 0;
+    const score = state.score || 0;
+    const highScore = state.highScore || 0;
+    const difficulty = state.difficulty || "Unknown";
+    const correctAnswer = state.correctAnswer || 0;
+    const incorrectAnswer = state.incorrectAnswer || 0;
 
     const handleRestart = () => {
         navigate("/");

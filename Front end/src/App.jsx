@@ -4,8 +4,10 @@ import GamePlay from './pages/GameplayPage/Gameplay';
 import { Route, Routes } from 'react-router-dom';
 import Settings from './pages/SettingsPage/Settings.jsx';
 import "./App.css"
-import EndGame from './pages/EndGamePage/EndGame.jsx';
+import Endgame from './pages/EndGamePage/EndGame.jsx';
 import Navbar from './components/shared/navbar.jsx';
+
+
 const App = () => {
   const [showModal, setShowModal] = useState(true);
   const [userName, setUserName] = useState(() => {
@@ -36,7 +38,7 @@ const App = () => {
         <Route path="/login" element={<Modal userNameLogIn={handleUsernameSubmit} setLoginModal={setShowModal}/>}/>
         <Route path="/play" element={<GamePlay userName={userName}/>} />
         <Route path="/play/:category/:difficulty" element={<GamePlay userName={userName}/>} />
-        <Route path="/play/placeholder" element={<EndGame userName={userName}/>}/>
+        <Route path="/play/results" element={<Endgame userName={userName}/>}/>
       </Routes>
       {showModal && (
         <div className="modal-overlay">

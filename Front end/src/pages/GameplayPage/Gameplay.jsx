@@ -19,7 +19,7 @@ useEffect(() => {
     const totalQuestions = state.questions.length;
     const incorrect = totalQuestions - state.correctAnswers;
 
-    navigate("/play/placeholder", {
+    navigate("/play/results", {
       state: {
         score: state.score,
         highScore: 0,
