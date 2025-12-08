@@ -1,16 +1,26 @@
-//Not as important right now but will come back to this later
+import { useState, useEffect } from 'react';
 
+const Highscore = () => {
+  const [scores, setScores] = useState([]);
 
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem('triviaScores')) || [];
+    setScores(saved);
+  }, []);
 
-
-const Highscore = () => {   
-
-
-return (
-    <div className="highscore-container content-center">
-        <h2>High Scores</h2>
-    </div>
-        )
-
+  return (
+    <div className="highscore
+    ">
+      <h2>High Scores</h2>
+     <ol>
+      <li>
+      {scores.map((s, i) => 
+      
+      <div key={i}>
+        
+        {s.score}</div>)}
+    </li></ol></div>
+  );
 }
-export default Highscore
+
+export default Highscore;

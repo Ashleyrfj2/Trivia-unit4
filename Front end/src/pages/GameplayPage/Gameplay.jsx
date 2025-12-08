@@ -7,7 +7,7 @@ import './gameplay.css';
 
 //https://generalassembly.instructure.com/courses/927/pages/intro-to-asynchronous-programming-video?module_item_id=91638
 
-//need settings from settings component when available
+
 const GamePlay = ({ userName }) => {
   const { category, difficulty } = useParams();
   const navigate = useNavigate();
@@ -15,9 +15,22 @@ const GamePlay = ({ userName }) => {
 
 useEffect(() => {
   if (state.isGameOver) {
-    // Calculate stats before navigating
+
     const totalQuestions = state.questions.length;
     const incorrect = totalQuestions - state.correctAnswers;
+
+
+    const gameResult = {
+      score: state.score,
+      difficulty: difficulty,
+      category: category
+    };
+
+
+
+    const existingScores = JSON.parse(localStorage.getItem('triviaScores')) || [];
+          existingScores.push(gameResult);
+    localStorage.setItem('triviaScores', JSON.stringify(existingScores));
 
     navigate("/play/results", {
       state: {
@@ -29,7 +42,7 @@ useEffect(() => {
       }
     });
   }
-}, [state.isGameOver, navigate, state.score, state.correctAnswers, state.questions.length, difficulty]);
+}, [state.isGameOver, navigate, state.score, state.correctAnswers, state.questions.length, difficulty, category]);
 
 useEffect(() => {
 
