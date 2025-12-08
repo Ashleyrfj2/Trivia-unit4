@@ -12,13 +12,29 @@ const GamePlay = ({ userName }) => {
   const { category, difficulty } = useParams();
   const navigate = useNavigate();
   const [state, dispatch] = useGameReducer();
- 
 
-      
 useEffect(() => {
-  
+  if (state.isGameOver) {
+    // Calculate stats before navigating
+    const totalQuestions = state.questions.length;
+    const incorrect = totalQuestions - state.correctAnswers;
+
+    navigate("/play/placeholder", {
+      state: {
+        score: state.score,
+        highScore: 0,
+        difficulty: difficulty,
+        correctAnswer: state.correctAnswers,
+        incorrectAnswer: incorrect
+      }
+    });
+  }
+}, [state.isGameOver, navigate, state.score, state.correctAnswers, state.questions.length, difficulty]);
+
+useEffect(() => {
+
     const loadQuestions = async () => {
-     
+
         const response = await fetch(`/api/questions/${category}/${difficulty}`);
        const data = await response.json();
          console.log("Fetched questions:", data);
@@ -29,7 +45,7 @@ useEffect(() => {
 
       const questionsPass = randomQuestions(data);
 
-      
+
         dispatch({
           type: "questionLoad",
           payload: {
@@ -38,14 +54,14 @@ useEffect(() => {
 
         });
 
-    
+
     }
-  
+
   if (category && difficulty) {
 loadQuestions();
     }
   }, [category, difficulty]);
-    
+
   // Timer effect
   useEffect(() => {
             const timer = setInterval(() => {
@@ -57,37 +73,30 @@ loadQuestions();
       clearInterval(timer);
   }, []);
 
-  // Navigate to end game when game is over
-  useEffect(() => {
-    if (state.isGameOver) {
-      navigate("/play/placeholder");
-    }
-  }, [state.isGameOver, navigate]);
-
   return (
            <div className="questionview">
 <div className="mockup-browser border-base-300 border w-full">
   <div className="mockup-browser-toolbar">
-    <div className="input">  
+    <div className="input">
       <QuestionView
         currentQuestion={state.currentQuestionIndex + 1}
         totalQuestions={state.questions.length}
-        
+
 
       />  <Score score={state.score} />   </div>
   </div>
   <div className="grid place-content-center border-t border-base-300 h-80 w-90" id="browser">
 
-    
 
-      
+
+
 
 
 
 
 
       <p className="timer">Time: {state.timeRemaining}s </p>
-        
+
      <div className="content-center"id='view'>
       {state.currentQuestion && typeof state.currentQuestion === 'object' ? (
         <>
