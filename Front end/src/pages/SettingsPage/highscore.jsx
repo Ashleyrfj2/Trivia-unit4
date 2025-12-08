@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 
+
+
 const Highscore = () => {
   const [scores, setScores] = useState([]);
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem('triviaScores')) || [];
+            const saved = JSON.parse(localStorage.getItem('triviaScores')) || [];
     setScores(saved);
   }, []);
 
