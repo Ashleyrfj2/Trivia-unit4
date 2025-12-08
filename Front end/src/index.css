@@ -39,6 +39,8 @@
 * {
   margin: 0;
   padding: 0;
+  cursor: url('../src/assets/pointer.svg'), auto;
+  
   /* box-sizing: border-box; */
 }
 
@@ -49,6 +51,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+ 
   
 
 }

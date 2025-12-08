@@ -1,12 +1,13 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { useGameReducer} from '../../hooks/useReducer';
-import './endGame.css';
+
+import './EndGame.css';
 
 const Endgame = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    const state = location.state || {};
 
     // const [score, setScore] = useState("")
     // const [highScore, setHighScore] = useState("")
@@ -14,53 +15,69 @@ const Endgame = () => {
     // const [correctAnswer, manyCorrectAnswer] = useState("")
     // const [incorrectAnswer, manyIncorrectAnswer] = useState("")
 
-  useEffect(() => {
-    if (gameState.isGameOver) {
-      navigate('/play/results', { viewTransition: true });
-    }
-  }, [gameState.isGameOver, navigate]);
-    const state = location.state || {};
-
     const score = state.score || 0;
     const highScore = state.highScore || 0;
     const difficulty = state.difficulty || "Unknown";
     const correctAnswer = state.correctAnswer || 0;
     const incorrectAnswer = state.incorrectAnswer || 0;
+const percentage = (correctAnswer / 10) * 100;
 
-    const handleRestart = () => {
-        navigate("/");
-    };
 
-    return (
-        <div className="endgameModal">
-            <div className="gameOver">
-                <h1>Game Over</h1>
-            </div>
-            <div className="difficulty">
-                <h6>{difficulty} Mode</h6>
-            </div>
-            <div>
-                <div className="score">
-                    <p>Final Score: {score}</p>
+
+const handleRestart = () => {
+    navigate("/");
+};
+
+
+    
+    
+    
+
+
+return (
+    <div className="questionview">
+        <div className="mockup-browser border-base-300 border w-full">
+            <div className="mockup-browser-toolbar">
+                <div className="input">
+                    <h6>Eric, Jesus, Ashley, and Chase </h6>
                 </div>
-                <div className="highScore">
-                    <p>High Score: {highScore} </p>
-                </div>
             </div>
-            <div className="correct">
-                <p>Correct: {correctAnswer}</p>
-            </div>
-            <div className="incorrect">
-                <p>Incorrect: {incorrectAnswer}</p>
-            </div>
+            <div className="grid place-content-center border-t border-base-300 h-80 w-90" id="browser">
+                <div className="endgame-container">
+                    <div className="score-card">
+                        <div className="score-circle">
+                            <span className="score-number">{percentage.toFixed(0)}%</span>
+                        
+                        
+                        <span className="score-message"> Correct</span></div>
+                    </div>
 
-            <div>
-                <button className="restart" onClick={handleRestart}>Play Again</button>
+                    <div className="summary-card">
+                        <h3>Summary</h3>
+                        <div className="summary-item">
+                            <span className="summary-label">Correct answers</span>
+                            <span className="summary-value">{correctAnswer}/10</span>
+                        </div>
+                        <div className="summary-item">
+                            <span className="summary-label">Highscore</span>
+                            <span className="summary-value">{highScore}</span>
+                        </div>
+                        <div className="summary-item">
+                            <span className="summary-label">Incorrect answers</span>
+                            <span className="summary-value">{incorrectAnswer}/10</span>
+                        </div>
+                        <div className="summary-item">
+                            <span className="summary-label">Difficulty</span>
+                            <span className="summary-value">{difficulty}</span>
+                        </div>
+                        <button className="restart-btn" onClick={handleRestart}>Continue</button>
+                    </div>
+                </div>
             </div>
         </div>
-    );
+    </div>
+)
 }
-
 export default Endgame;
 
 
