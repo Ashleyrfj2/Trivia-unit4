@@ -37,11 +37,17 @@ return (
   
         <select  className="select select-accent " id="category" value={category} onChange={(event) => setCategory(event.target.value)}>
           <option disabled value="">Select Category </option>
-          <option value="science">Science</option>
-          <option value="history">History</option>
-          <option value="animals">Animals</option>
-          <option value="sports">Sports</option>
-          <option value="technology">technology</option>
+         <option value="animals">Animals</option>
+<option value="science">Science</option>
+<option value="history">History</option>
+<option value="geography">Geography</option>
+<option value="entertainment">Entertainment</option>
+<option value="sports">Sports</option>
+<option value="literature">Literature</option>
+<option value="music">Music</option>
+<option value="technology">Technology</option>
+<option value="food">Food</option>
+<option value="mythology">Mythology</option>
         </select>
       </div>
 

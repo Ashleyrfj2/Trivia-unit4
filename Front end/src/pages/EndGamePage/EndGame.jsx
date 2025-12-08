@@ -60,7 +60,7 @@ return (
                         </div>
                         <div className="summary-item">
                             <span className="summary-label">Highscore</span>
-                            <span className="summary-value">{highScore}</span>
+                            <span className="summary-value">1000</span>
                         </div>
                         <div className="summary-item">
                             <span className="summary-label">Incorrect answers</span>
