@@ -18,12 +18,18 @@
   border-style: solid;
 
 }
-div#modalview
-{
+div#modalview{
+  display: grid;
+color:rgb(80, 214, 255);
+border-width: 3px;
 width: 650px;
-background: rgb(69, 78, 170);
+background-image: url('../src/assets/modal.jpg');
+grid-template-rows: 1fr;
 }
-
+.div#modalcontent {
+display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
 
 
 @view-transition {
