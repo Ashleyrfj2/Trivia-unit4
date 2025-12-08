@@ -65,7 +65,7 @@ loadQuestions();
   }, [state.isGameOver, navigate]);
 
   return (
-    <div className="questionview">
+           <div className="questionview">
 <div className="mockup-browser border-base-300 border w-full">
   <div className="mockup-browser-toolbar">
     <div className="input">  
@@ -94,17 +94,17 @@ loadQuestions();
         <div className = 'question'>
           <h1>{state.currentQuestion.question}</h1></div>
           {state.currentQuestion?.correct_answer && state.currentQuestion.correct_answer.length > 0 ? (
-            <div className="answers">
+      <div className="answers">
               {state.currentQuestion.answers.map((answer, index) => {
-                const answerText = typeof answer === 'string' ? answer : answer.text;
+    const answerText = typeof answer === 'string' ? answer : answer.text;
 
-                return (
-                  <button className="btn btn-outline content-center" id="answerBtn"
-                  key={index}
-                  onClick={() => dispatch({ type: "answer", payload: answer })}
+      return (
+          <button className="btn btn-outline content-center" id="answerBtn"
+               key={index}
+                onClick={() => dispatch({ type: "answer", payload: answer })}
                 >
-                  {answerText ? answerText : "answer"}
-                </button>
+        {answerText ? answerText : "answer"}
+           </button>
                 );
               })}
             </div>

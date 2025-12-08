@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Modal from './components/shared/modal.jsx';
-import GamePlay from './pages/GameplayPage/main';
+import GamePlay from './pages/GameplayPage/Gameplay';
 import { Route, Routes } from 'react-router-dom';
 import Settings from './pages/SettingsPage/Settings.jsx';
 import "./App.css"

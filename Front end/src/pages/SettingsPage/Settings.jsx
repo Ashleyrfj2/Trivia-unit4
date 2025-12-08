@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 
 import {useState} from "react"
-import Highscore from "./highscore";
+import Highscore from "./Highscore";
 import "./settings.css";
 
 
@@ -16,6 +16,11 @@ import "./settings.css";
 const navigate = useNavigate();
 const [category, setCategory] = useState("")
 const [difficulty, setDifficulty] = useState("")
+
+
+
+
+
 
 
 return (
@@ -34,7 +39,7 @@ return (
           <option disabled value="">Select Category </option>
           <option value="science">Science</option>
           <option value="history">History</option>
-          <option value="animals">Entertainment</option>
+          <option value="animals">Animals</option>
           <option value="sports">Sports</option>
           <option value="technology">technology</option>
         </select>

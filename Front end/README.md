@@ -3,7 +3,7 @@ https://media.datacamp.com/legacy/image/upload/v1697797990/Marketing/Blog/Markdo
 
 **Ashley's notes:**
 
-    ### useReducer / logic 
+    #useReducer / logic 
 
     I couldnt bring all the features together using the useState(), I know its possible but I was having issues making it click in my head with the parts all depending on each other such as timer, score, so I went into the offical documents (react) to get my logic together and found out about useReducer which clicked really fast and made more sense to me. I learned that useState is meant for simple states that are independent and its best practice to use useReducer when its a bit more complex and states depend on each other. I also learned about useRef as they were all groups together.
  ![Image](./image.png) 

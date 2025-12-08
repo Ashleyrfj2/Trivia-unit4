@@ -22,7 +22,12 @@ div#modalview
 {
 width: 650px;
 background: rgb(69, 78, 170);
+}
 
+
+
+@view-transition {
+  navigation: auto;
 }
 
 

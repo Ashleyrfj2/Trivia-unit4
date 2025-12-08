@@ -15,7 +15,7 @@ const QuestionView = ({ currentQuestion, totalQuestions}) => {
   return (
     <div className="question-container">
       <p>Question {currentQuestion} / {totalQuestions}</p>
-      
+     
       
     </div>
   );

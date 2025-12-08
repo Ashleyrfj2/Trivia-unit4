@@ -9,7 +9,7 @@ const EndGame = () => {
 
   useEffect(() => {
     if (gameState.isGameOver) {
-      navigate('/play/placeholder');
+      navigate('/play/placeholder', { viewTransition: true });
     }
   }, [gameState.isGameOver, navigate]);
 
