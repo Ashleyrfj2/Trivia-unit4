@@ -1,6 +1,3 @@
-
-//const [loginModal, setLoginModal] = useState(true);
-
 import {useState } from 'react';
 
 const Modal = ({ userNameLogIn, setLoginModal }) => {

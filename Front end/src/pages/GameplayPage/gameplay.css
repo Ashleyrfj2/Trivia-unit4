@@ -6,6 +6,9 @@ div#browser{
   width: 900px;
   height: 80vh;
   margin-bottom: 20px;
+  background-image: url('../../assets/gameplay.jpg');
+background-position: center;
+background-size: cover ;
 
 }
 
@@ -49,6 +52,7 @@ div#view{
   padding: 12px 20px;
   font-size: 16px;
 }
+
 
 
 
