@@ -75,8 +75,8 @@ loadQuestions();
 
   return (
            <div className="questionview">
-<div className="mockup-browser border-base-300 border w-full">
-  <div className="mockup-browser-toolbar">
+<div className="mockup-browser border-base-160 border w-full">
+  <div className="mockup-browser-toolbar" id='toolbar'>
     <div className="input">
       <QuestionView
         currentQuestion={state.currentQuestionIndex + 1}
